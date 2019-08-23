@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { bake_cookie, read_cookie, delete_cookie } from 'sfcookies';
 import './Product.css';
 
 import api from '../config/api'
@@ -17,7 +18,8 @@ export default class Product extends Component {
         this.getProduct().then(res => res)
     }
     getProduct = async () => {
-        let result = await api.get('/product', { headers: { authorization: `Bearer ${this.props.location.token}` } })
+
+        let result = await api.get('/product', { headers: { authorization: `Bearer ${read_cookie('token')}` } })
         this.setState({ products: result.data })
     }
 
@@ -42,7 +44,7 @@ export default class Product extends Component {
         event.preventDefault()
 
         let id = event.target.id
-        let result = await api.get(`/product/${id}`, { headers: { authorization: `Bearer ${this.props.location.token}` } })
+        let result = await api.get(`/product/${id}`, { headers: { authorization: `Bearer ${read_cookie('token')}` } })
 
         let product = result.data
         console.log(product)

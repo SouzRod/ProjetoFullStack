@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './Login.css'
+import { bake_cookie, read_cookie, delete_cookie } from 'sfcookies';
+import './Login.css';
 
-import api from '../config/api'
+import api from '../config/api';
 
 export default class Login extends Component {
     constructor() {
@@ -26,7 +27,8 @@ export default class Login extends Component {
             let result = await api.post('/auth', { email, password })
     
             const { token } = result.data.result
-            console.log(token)
+            
+            bake_cookie('token', token)
     
             this.props.history.push({ pathname: '/produto', token})
         }catch(err) {

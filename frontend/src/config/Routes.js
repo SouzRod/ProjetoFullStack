@@ -7,10 +7,10 @@ import Product from '../pages/Product';
 
 export default () => {
     return (
-        <BrowserRouter>
-            <Route path="/" exact component={Login}/>
-            <Route path="/cadastro" exact component={Register}/>
-            <Route path="/produto" exact component={Product}/>
-        </BrowserRouter>
+            <BrowserRouter>
+                <Route path="/" exact component={Login}/>
+                <Route path="/cadastro" exact component={Register}/>
+                <Route path="/produto" exact component={Product}/>
+            </BrowserRouter>
     )
 }
