@@ -6,8 +6,13 @@ const authentication = async (req, res) => {
     try {
         const result = await service.authentication(email, password)
 
+        if(result.status) {
+            res.status(result.status).send(result.message)
+            return false
+        }   
+
         res.send({ result })
-    } catch (err) {
+    } catch (error) {
         res.status(error.status).send({ error: error.message })
     }
 }
